@@ -1,0 +1,148 @@
+{
+    "08/01/21": {
+        "Phnom Penh": {
+            "avgTemp": 31,
+            "highTemp": 32,
+            "lowTemp": 22,
+            "cond": "sunny"
+        },
+        "Kompong Cham": {
+            "avgTemp": 28,
+            "highTemp": 33,
+            "lowTemp": 20,
+            "cond": "sunny"
+        },
+        "Kampong Chnang": {
+            "avgTemp": 24,
+            "highTemp": 32,
+            "lowTemp": 21,
+            "cond": "sunny"
+        },
+        "Kompot": {
+            "avgTemp": 24,
+            "highTemp": 32,
+            "lowTemp": 23,
+            "cond": "cloudy"
+        },
+        "Kampong Speu": {
+            "avgTemp": 28,
+            "highTemp": 31,
+            "lowTemp": 21,
+            "cond": "sunny"
+        },
+        "Banteay Meanchey": {
+            "avgTemp": 24,
+            "highTemp": 32,
+            "lowTemp": 21,
+            "cond": "sunny"
+        },
+        "Battambang": {
+            "avgTemp": 23,
+            "highTemp": 32,
+            "lowTemp": 21,
+            "cond": "sunny"
+        },
+        "Kandal": {
+            "avgTemp": 29,
+            "highTemp": 32,
+            "lowTemp": 21,
+            "cond": "cloudy"
+        },
+        "Koh Kong": {
+            "avgTemp": 20,
+            "highTemp": 33,
+            "lowTemp": 19,
+            "cond": "sunny"
+        },
+        "kep": {
+            "avgTemp": 24,
+            "highTemp": 31,
+            "lowTemp": 24,
+            "cond": "sunny"
+        },
+        "Kratie": {
+            "avgTemp": 24,
+            "highTemp": 34,
+            "lowTemp": 19,
+            "cond": "sunny"
+        },
+        "mondulkiri": {
+            "avgTemp": 19,
+            "highTemp": 29,
+            "lowTemp": 17,
+            "cond": "sunny"
+        },
+        "Oddar Meanchey": {
+            "avgTemp": 22,
+            "highTemp": 34,
+            "lowTemp": 20,
+            "cond": "sunny"
+        },
+        "Pailin": {
+            "avgTemp": 22,
+            "highTemp": 31,
+            "lowTemp": 20,
+            "cond": "sunny"
+        },
+        "Preah Sihanouk Ville": {
+            "avgTemp": 23,
+            "highTemp": 31,
+            "lowTemp": 22,
+            "cond": "cloudy"
+        },
+        "Preah Vihea": {
+            "avgTemp": 22,
+            "highTemp": 34,
+            "lowTemp": 19,
+            "cond": "sunny"
+        },
+        "pursat": {
+            "avgTemp": 22,
+            "highTemp": 31,
+            "lowTemp": 21,
+            "cond": "sunny"
+        },
+        "Prey Veng": {
+            "avgTemp": 29,
+            "highTemp": 33,
+            "lowTemp": 22,
+            "cond": "sunny"
+        },
+        "Ratanakiri": {
+            "avgTemp": 21,
+            "highTemp": 33,
+            "lowTemp": 16,
+            "cond": "sunny"
+        },
+        "Siem Reap": {
+            "avgTemp": 25,
+            "highTemp": 31,
+            "lowTemp": 21,
+            "cond": "sunny"
+        },
+        "Stung treng": {
+            "avgTemp": 22,
+            "highTemp": 33,
+            "lowTemp": 18,
+            "cond": "sunny"
+        },
+        "Svay Rieng": {
+            "avgTemp": 25,
+            "highTemp": 33,
+            "lowTemp": 23,
+            "cond": "sunny"
+        },
+        "Takeo": {
+            "avgTemp": 25,
+            "highTemp": 33,
+            "lowTemp": 23,
+            "cond": "sunny"
+        },
+        "Tboung Khmum": {
+            "avgTemp": 23,
+            "highTemp": 34,
+            "lowTemp": 20,
+            "cond": "sunny"
+        }
+    }
+}
