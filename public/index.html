@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="cloudy.png">
+</head>
+
+<body>
+    <h3 class="title-style">Cambodia Weather Datebase</h3>
+
+    <div class="database">
+        <div class="label">
+            <label class="l-style">Date</label>
+            <input class="date-style" type="date" placeholder="dd/mm/yyyy">
+
+            <label class="l-style">City/Province</label>
+            <select  class="opt-style" id="">
+                <option value="" selected>--- none ---</option>
+                <option value="">Banteay Meanchey</option>
+                <option value="">Battambang</option>
+                <option value="">Kampong Cham</option>
+                <option value="">Kampong Chhnang</option>
+                <option value="">Kampong Speu</option>
+                <option value="">Kampong Thom</option>
+                <option value="">Kampot</option>
+                <option value="">Kandal</option>
+                <option value="">Koh Kong</option>
+                <option value="">Kratié</option>
+                <option value="">Mondulkiri</option>
+                <option value="">Phnom Penh</option>
+                <option value="">Preah Vihear</option>
+                <option value="">Prey Veng</option>
+                <option value="">Pursat</option>
+                <option value="">Ratanak Kiri</option>
+                <option value="">Siem Reap</option>
+                <option value="">Preah Sihanouk</option>
+                <option value="">Stung Treng</option>
+                <option value="">Svay Rieng</option>
+                <option value="">Takéo</option>
+                <option value="">Oddar Meanchey</option>
+                <option value="">Kep</option>
+                <option value="">Pailin</option>
+                <option value="">Tbong Khmum</option>
+            </select>
+
+            <label class="l-style">Highest Temperature</label>
+            <div class="merge">
+                <input class="input-style" type="text" placeholder="35°C">
+                <input class="measurement" type="text" placeholder="°C" disabled>
+            </div>
+            
+            <label class="l-style">Average Temperature</label>
+            <div>
+                <input class="input-style" type="text" placeholder="28°C"> 
+                <input class="measurement" type="text" placeholder="°C" disabled>   
+            </div>
+            
+
+            <label class="l-style">Lowest Temperature</label>
+            <div>
+                <input class="input-style" type="text" placeholder="19°C">
+                <input class="measurement" type="text" placeholder="°C" disabled>
+            </div>
+            
+            <label class="l-style">Conditions</label>
+            <select class="opt-style" id="">
+                <option value="">--- none ---</option>
+                <option value="">Sunny/Clear</option>
+                <option value="">Partially Cloudy</option>
+                <option value="">Cloudy</option>
+                <option value="">Overcast</option>
+                <option value="">Rain</option>
+                <option value="">Drizzle</option>
+                <option value="">Stormy</option>
+            </select>
+            
+            <div class="btn">
+                <div>
+                    <button class="btn-style">Insert Record</button>
+                    <button class="btn-style">Update Record</button>
+                </div>
+                <div>
+                    <button class="btn-style">Delete Record</button>
+                    <button class="btn-style">Find Record</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="table">
+            <div class="date-table">
+
+            </div>
+            <div class="data-table">
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>
