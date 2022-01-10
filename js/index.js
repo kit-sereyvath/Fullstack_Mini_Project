@@ -66,6 +66,7 @@ function deleted(){
     let province = document.getElementById("province").value
     let id = date + province
 
+    //delete everything
     if (date == "" && province == "none"){
         let confirm = prompt("You are about to DELETE EVERYTHING!\nPlease type \"deleteall\" to confirm your decision:");
         if (confirm == "deleteall") {
@@ -87,6 +88,7 @@ function deleted(){
         
     }
 
+    //delete by using id (date and province)
     if (id != "none") {
         fetch('http://localhost:3000/Cambodia/' + id, {
             method: "DELETE"
@@ -106,29 +108,68 @@ function find(){
     let province = document.getElementById("province")
     let id = date.value + province.value
 
-    let t_date = document.getElementById("records-table").children[0].children[1].children[0]
-    let t_province = document.getElementById("records-table").children[0].children[1].children[1]
-    let t_high = document.getElementById("records-table").children[0].children[1].children[2]
-    let t_avg = document.getElementById("records-table").children[0].children[1].children[3]
-    let t_low = document.getElementById("records-table").children[0].children[1].children[4]
-    let t_cond = document.getElementById("records-table").children[0].children[1].children[5]
+    let table = document.getElementById("records-table")
+    let t_date = table.children[0].children[1].children[0]
+    let t_province = table.children[0].children[1].children[1]
+    let t_high = table.children[0].children[1].children[2]
+    let t_avg = table.children[0].children[1].children[3]
+    let t_low = table.children[0].children[1].children[4]
+    let t_cond = table.children[0].children[1].children[5]
 
-    fetch('http://localhost:3000/Cambodia/' + id).then((response) => {
-        if(response.status == 200){
-            response.json().then((data) => {
-                let datee = data.id[5] + data.id[6] + '/' + data.id[8] + data.id[9] + '/' + data.id[0] + data.id[1] + data.id[2] + data.id[3]
-                let province = ''
-                for( let i = 10; i < data.id.length; i++)
-                    province += data.id[i]
-                t_date.innerHTML = datee
-                t_province.innerHTML = province
-                t_high.innerHTML = data.highTemp + "°C"
-                t_avg.innerHTML = data.avgTemp + "°C"
-                t_avg.innerHTML = data.lowTemp + "°C"
-                t_cond.innerHTML = data.cond
-            })
-        } else if (response.status == 404){
-            alert("The weather data of " + province.value + " on " + date.value + " does not EXIST!")
-        }
-    })
+    //find all data
+    if (id == "none"){
+        console.log("Start the function.")
+        fetch('http://localhost:3000/Cambodia').then((response) => {
+            if(response.status == 200){
+                response.json().then((data) => {
+                    for(let i = 1; i < data.length && i < table.children[0].childElementCount; i++){
+                        let datee = data[i].id[5] + data[i].id[6] + '/' + data[i].id[8] + data[i].id[9] + '/' + data[i].id[0] + data[i].id[1] + data[i].id[2] + data[i].id[3]
+                        let province_name = ''
+                        for( let j = 10; j < data[i].id.length; j++)
+                            province_name += data[i].id[j]
+
+                        //Referenc to all available table row
+                        let t_date = table.children[0].children[i].children[0]
+                        let t_province = table.children[0].children[i].children[1]
+                        let t_high = table.children[0].children[i].children[2]
+                        let t_avg = table.children[0].children[i].children[3]
+                        let t_low = table.children[0].children[i].children[4]
+                        let t_cond = table.children[0].children[i].children[5]
+
+                        //display the data in the table
+                        t_date.innerHTML = datee
+                        t_province.innerHTML = province_name
+                        t_high.innerHTML = data[i].highTemp + "°C"
+                        t_avg.innerHTML = data[i].avgTemp + "°C"
+                        t_low.innerHTML = data[i].lowTemp + "°C"
+                        t_cond.innerHTML = data[i].cond
+                    }
+                })
+            } else if (response.status == 404){
+                alert("No data was FOUND!")
+            }
+        })
+    }
+
+    //find data with id (date and province)
+    if (id != "none") {
+        fetch('http://localhost:3000/Cambodia/' + id).then((response) => {
+            if(response.status == 200){
+                response.json().then((data) => {
+                    let datee = data.id[5] + data.id[6] + '/' + data.id[8] + data.id[9] + '/' + data.id[0] + data.id[1] + data.id[2] + data.id[3]
+                    let province = ''
+                    for( let i = 10; i < data.id.length; i++)
+                        province += data.id[i]
+                    t_date.innerHTML = datee
+                    t_province.innerHTML = province
+                    t_high.innerHTML = data.highTemp + "°C"
+                    t_avg.innerHTML = data.avgTemp + "°C"
+                    t_low.innerHTML = data.lowTemp + "°C"
+                    t_cond.innerHTML = data.cond
+                })
+            } else if (response.status == 404){
+                alert("The weather data of " + province.value + " on " + date.value + " does not EXIST!")
+            }
+        })
+    }
 }
