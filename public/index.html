@@ -27,78 +27,76 @@
 <!-- User Input -->
 
             <label class="l-style">Date</label>
-            <input class="date-style" type="date" placeholder="dd/mm/yyyy">
+            <input id="date" class="date-style" type="date" placeholder="dd/mm/yyyy" value="2022-01-08">
 
             <label class="l-style">City/Province</label>
-            <select  class="opt-style" id="">
-                <option value="" selected>--- none ---</option>
-                <option value="">Banteay Meanchey</option>
-                <option value="">Battambang</option>
-                <option value="">Kampong Cham</option>
-                <option value="">Kampong Chhnang</option>
-                <option value="">Kampong Speu</option>
-                <option value="">Kampong Thom</option>
-                <option value="">Kampot</option>
-                <option value="">Kandal</option>
-                <option value="">Koh Kong</option>
-                <option value="">Kratié</option>
-                <option value="">Mondulkiri</option>
-                <option value="">Phnom Penh</option>
-                <option value="">Preah Vihear</option>
-                <option value="">Prey Veng</option>
-                <option value="">Pursat</option>
-                <option value="">Ratanak Kiri</option>
-                <option value="">Siem Reap</option>
-                <option value="">Preah Sihanouk</option>
-                <option value="">Stung Treng</option>
-                <option value="">Svay Rieng</option>
-                <option value="">Takéo</option>
-                <option value="">Oddar Meanchey</option>
-                <option value="">Kep</option>
-                <option value="">Pailin</option>
-                <option value="">Tbong Khmum</option>
+            <select class="opt-style" id="province">
+                <option value="Banteay Meanchey" selected>Banteay Meanchey</option>
+                <option value="Battambang">Battambang</option>
+                <option value="Kampong Cham">Kampong Cham</option>
+                <option value="Kampong Chhnang">Kampong Chhnang</option>
+                <option value="Kampong Speu">Kampong Speu</option>
+                <option value="Kampong Thom">Kampong Thom</option>
+                <option value="Kampot">Kampot</option>
+                <option value="Koh Kong">Koh Kong</option>
+                <option value="Kratié">Kratié</option>
+                <option value="Mondulkiri">Mondulkiri</option>
+                <option value="Phnom Penh">Phnom Penh</option>
+                <option value="Preah Vihear">Preah Vihear</option>
+                <option value="Prey Veng">Prey Veng</option>
+                <option value="Pursat">Pursat</option>
+                <option value="Ratanak Kiri">Ratanak Kiri</option>
+                <option value="Siem Reap">Siem Reap</option>
+                <option value="Preah Sihanouk Ville">Preah Sihanouk Ville</option>
+                <option value="Stung Treng">Stung Treng</option>
+                <option value="Svay Rieng">Svay Rieng</option>
+                <option value="Takéo">Takéo</option>
+                <option value="Oddar Meanchey">Oddar Meanchey</option>
+                <option value="Kep">Kep</option>
+                <option value="Pailin">Pailin</option>
+                <option value="Tbong Khmum">Tbong Khmum</option>
             </select>
 
             <label class="l-style">Highest Temperature</label>
             <div>
-                <input class="input-style" type="text" placeholder="35°C">
+                <input id="hightemp" class="input-style" type="text" placeholder="35°C">
                 <input class="measurement" type="text" placeholder="°C" disabled>
             </div>
             
             <label class="l-style">Average Temperature</label>
             <div>
-                <input class="input-style" type="text" placeholder="28°C"> 
+                <input id="avgtemp" class="input-style" type="text" placeholder="28°C"> 
                 <input class="measurement" type="text" placeholder="°C" disabled>   
             </div>
             
 
             <label class="l-style">Lowest Temperature</label>
             <div>
-                <input class="input-style" type="text" placeholder="19°C">
+                <input id="lowtemp" class="input-style" type="text" placeholder="19°C">
                 <input class="measurement" type="text" placeholder="°C" disabled>
             </div>
             
             <label class="l-style">Conditions</label>
-            <select class="opt-style" id="">
-                <option value="">--- none ---</option>
-                <option value="">Sunny/Clear</option>
-                <option value="">Partially Cloudy</option>
-                <option value="">Cloudy</option>
-                <option value="">Overcast</option>
-                <option value="">Rain</option>
-                <option value="">Drizzle</option>
-                <option value="">Stormy</option>
+            <select class="opt-style" id="condition">
+                <option value="none">--- none ---</option>
+                <option value="Sunny/Clear">Sunny/Clear</option>
+                <option value="Partially Cloudy">Partially Cloudy</option>
+                <option value="Cloudy">Cloudy</option>
+                <option value="Overcast">Overcast</option>
+                <option value="Rain">Rain</option>
+                <option value="Drizzle">Drizzle</option>
+                <option value="Stormy">Stormy</option>
             </select>
             
 <!-- Modify Button -->
             <div class="btn">
                 <div>
-                    <button class="btn-style">Insert Record</button>
-                    <button class="btn-style">Update Record</button>
+                    <button onclick="insert()" class="btn-style">Insert Record</button>
+                    <button onclick="update()" class="btn-style">Update Record</button>
                 </div>
                 <div>
-                    <button class="btn-style">Delete Record</button>
-                    <button class="btn-style">Find Record</button>
+                    <button onclick="deleted()" class="btn-style">Delete Record</button>
+                    <button onclick="find()" class="btn-style">Find Record</button>
                 </div>
             </div>
         </div>
@@ -219,5 +217,7 @@
 <!-- Records Table Ended -->
 
     </div>
+
+    <script src="../js/index.js"></script>
 </body>
 </html>
