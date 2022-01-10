@@ -66,15 +66,38 @@ function deleted(){
     let province = document.getElementById("province").value
     let id = date + province
 
-    fetch('http://localhost:3000/Cambodia/' + id, {
-        method: "DELETE"
-    }).then((response) => {
-        if(response.status == 200){
-            alert("The weather data of " + province + " on " + date + " was DELETED! successfully!")
-        } else if (response.status == 404){
-            alert("There weather data of " + province + " on " + date + " does not EXIST!")
+    if (date == "" && province == "none"){
+        let confirm = prompt("You are about to DELETE EVERYTHING!\nPlease type \"deleteall\" to confirm your decision:");
+        if (confirm == "deleteall") {
+            fetch('http://localhost:3000/Cambodia').then((response) => {
+                if(response.status == 200){
+                    response.json().then((data) => {
+                        for(let i = 0; i < data.length; i++){
+                            fetch('http://localhost:3000/Cambodia/' + data[i].id, {
+                                method: "DELETE"
+                            })
+                        }
+                        alert("All weather data were DELETED successfully!"); 
+                    })
+                } else if (response.status == 404){
+                    alert("Threre is no data to DELETE!")
+                }
+            })
         }
-    })
+        
+    }
+
+    if (id != "none") {
+        fetch('http://localhost:3000/Cambodia/' + id, {
+            method: "DELETE"
+        }).then((response) => {
+            if(response.status == 200){
+                alert("The weather data of " + province + " on " + date + " was DELETED! successfully!")
+            } else if (response.status == 404){
+                alert("There weather data of " + province + " on " + date + " does not EXIST!")
+            }
+        })
+    }
 }
 
 //handle data finding
