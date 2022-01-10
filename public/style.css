@@ -1,27 +1,53 @@
+
 *{
     margin: 0px;
 }
 
-.label {
+/* Website Title styling */
+.title-style {
+    height: 80px;
+    font-size: 40px;
+    text-align: center;
+    margin: 0px 0 10px 0;
+    background-color: #516BEB;
+    color: white;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-shadow: rgb(124, 124, 124) -4px 4px 10px;
+}
+
+.title-style>h3 {
+    position: absolute;
+    top: 6.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: -3px 3px 3px #000000;
+}
+
+/* Both Modify Table and Records Table container */
+.database {
+    display: grid;
+    grid-template-areas: 'modify table table';
+}
+
+/* Modify Table styling Started*/
+.modify-table {
     display: flex;
     flex-direction: column;
-    width: 320px; /*320px 960px*/
+    width: 320px;
     margin: 20px 30px;
     background-color: #84DFFF;
-    padding: 10px 10px 20px 20px;
+    padding: 10px 10px 10px 20px;
     border-radius: 7px;
     grid-area: modify;
+    box-shadow: rgb(124, 124, 124) -4px 4px 10px;
+}
+    /* Modify Table alignment */
+.modify-table>h4 {
+    text-align: center;
 }
 
-.table {
-    width: 910px;
-    height: 480px;
-    margin: 20px 0px 20px 0px;
-    background-color: #84DFFF;
-    border-radius: 7px;
-    grid-area: table;
-}
-
+    /* Label styling */
 .l-style{
     padding: 7px;
     width: 280px;
@@ -29,6 +55,7 @@
     border: none;
 }
 
+    /* Seletion styling */
 .opt-style {
     width: 307px;
     height: 25px;
@@ -37,6 +64,7 @@
     text-align: center;
 }
 
+    /* Input styling */
 .input-style{
     width: 264px;
     height: 24px;
@@ -44,22 +72,18 @@
     border: none;
 }
 
+    /* Celsius behind high,avg,low temp styling */
 .measurement {
     text-align: center;
-    color: black;
     width: 30px;
     height: 24px;
     border-radius: 100px;
     border: none;
-    background-color: rgb(170, 170, 170);
+    background-color: rgb(218, 218, 218);
     margin: 0;
 }
 
-.merge {
-    margin: 0;
-    padding: 0;
-}
-
+    /* Date styling */
 .date-style {
     width: 304px;
     height: 25px;
@@ -68,17 +92,7 @@
     text-align: center;
 }
 
-.title-style {
-    height: 80px;
-    font-size: 30px;
-    text-align: center;
-    margin: 0px 0 10px 0;
-    background-color: #516BEB;
-    color: white;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-}
-
+    /* Button styling Started */
 .btn-style {
     width: 150px;
     height: 35px;
@@ -96,26 +110,51 @@
 }
 
 .btn {
-    margin: 10px 0 5px 0;
+    margin-top:4px;
+}
+    /* Button styling Ended */
+/* Modify Table styling Ended*/
+
+/* Table Section Started */
+
+    /* Positioning Records Table */
+.table {
+    width: 910px;
+    height: 480px;
+    margin: 20px 0px 20px 0px;
+    border-radius: 7px;
+    grid-area: table;
 }
 
-.database {
-    display: grid;
-    grid-template-areas: 'modify table table';
-}
-
-.date-table {
-    background-color: #84DFFF;
+    /* Reduce space between table cells and fit table div*/
+#records-table {
+    border-collapse: collapse;
     width: 100%;
-    height: 10%;
+}
+
+    /* Table border styling */
+#records-table td, #records-table th {
+    border: 2px solid rgb(255, 255, 255);
+    padding: 8px;
+}
+
+    /* Each 2 row will change color */
+#records-table tr:nth-child(even){
+    background-color: #c2c2c2;
+}
+    /* Table Hover styling */
+#records-table tr:hover {
+    background-color: rgb(116, 116, 116);
+}
+
+    /* Top of the table styling */
+#records-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #84DFFF;
+    color: white;
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
 }
-
-.data-table {
-    width: 100%;
-    height: 90%;
-    background-color: #EDD2F3;
-    border-bottom-left-radius: 7px;
-    border-bottom-right-radius: 7px;
-}
+/* Table Section Ended */
