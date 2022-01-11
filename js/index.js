@@ -18,17 +18,18 @@ function insert(){
         cond: condition
     }
 
-    fetch('http://localhost:3000/Cambodia/', {
-                    method: "POST",
-                    headers: {"content-type": "application/json"},
-                    body: JSON.stringify(weather_data)
-                }).then((response) => {
-                    if (response.status == 201) {
-                        alert("The weather data of " + province + " on " + date + " wae INSERTED successfully!")
-                    }
-                    else if (response.status == 500)
-                        alert("The weather data of " + province + " on " + date + " already exist!\n" + "Consider EDIT the data instead.")
-                })
+    if (province != "none" && date != "")
+        fetch('http://localhost:3000/Cambodia/', {
+            method: "POST",
+            headers: {"content-type": "application/json"},
+            body: JSON.stringify(weather_data)
+        }).then((response) => {
+            if (response.status == 201) {
+                alert("The weather data of " + province + " on " + date + " was INSERTED successfully!")
+            }
+            else if (response.status == 500)
+                alert("The weather data of " + province + " on " + date + " already exist!\n" + "Consider EDIT the data instead.")
+        })
 }
 
 //handle updation of data
@@ -88,10 +89,59 @@ function deleted(){
             })
         }
         
+    } 
+    
+    //delete data by date
+    else if (province == "none" && date != ""){
+        fetch('http://localhost:3000/Cambodia').then((response) => {
+            if(response.status == 200){
+                response.json().then((data) => {
+                    for(let i = 0; i < data.length; i++){
+                        let datee = data[i].id[5] + data[i].id[6] + '/' + data[i].id[8] + data[i].id[9] + '/' + data[i].id[0] + data[i].id[1] + data[i].id[2] + data[i].id[3]
+                        let dated = date[5] + date[6] + '/' + date[8] + date[9] + '/' + date[0] + date[1] + date[2] + date[3]
+
+                        console.log(dated + " " + datee);
+                        if (dated == datee) {
+                            fetch('http://localhost:3000/Cambodia/' + data[i].id, {
+                                method: "DELETE"
+                            })
+                        }
+                    }
+                    alert("All weather data on " + date + " were DELETED successfully!");
+                })
+            } else if (response.status == 404){
+                alert("No data was FOUND!")
+            }
+        })
+    }
+
+
+    //delete data by province
+    else if (province != "none" && date == ""){
+        fetch('http://localhost:3000/Cambodia').then((response) => {
+            if(response.status == 200){
+                response.json().then((data) => {
+                    for(let i = 0; i < data.length; i++){
+                        let province_name = ''
+                        for( let j = 10; j < data[i].id.length; j++)
+                            province_name += data[i].id[j]
+
+                        if (province == province_name) {
+                            fetch('http://localhost:3000/Cambodia/' + data[i].id, {
+                                method: "DELETE"
+                            })
+                        }
+                    }
+                    alert("All weather data of " + province + " were DELETED successfully!");
+                })
+            } else if (response.status == 404){
+                alert("No data was FOUND!")
+            }
+        })
     }
 
     //delete by using id (date and province)
-    if (id != "none") {
+    else if (province != "none" && date != "") {
         fetch('http://localhost:3000/Cambodia/' + id, {
             method: "DELETE"
         }).then((response) => {
@@ -179,6 +229,8 @@ function find(){
                             k++;
                         }
                     }
+                    if(k == 1)
+                        alert("No data was FOUND!")
                 })
             } else if (response.status == 404){
                 alert("No data was FOUND!")
@@ -219,6 +271,8 @@ function find(){
                             k++;
                         }
                     }
+                    if(k == 1)
+                        alert("No data was FOUND!")
                 })
             } else if (response.status == 404){
                 alert("No data was FOUND!")
