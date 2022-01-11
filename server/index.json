@@ -167,6 +167,13 @@
       "highTemp": 34,
       "lowTemp": 20,
       "cond": "sunny"
+    },
+    {
+      "id": "2022-01-06Battambang",
+      "avgTemp": "21",
+      "highTemp": "22",
+      "lowTemp": "20",
+      "cond": "Overcast"
     }
   ]
 }
