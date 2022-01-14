@@ -1,4 +1,4 @@
-const all_province = ["Banteay Meanchey","Battambang","Kampong Cham","Kampong Chhnang","Kampong Speu","Kampong Thom","Kampot","Koh Kong","Kratié","Mondulkiri","Phnom Penh","Preah Vihear","Prey Veng","Pursat","Ratanak Kiri","Siem Reap","Preah Sihanouk Ville","Stung Treng","Svay Rieng","Takéo","Oddar Meanchey","Kep","Pailin","Tbong Khmum"]
+let table = document.getElementById("records-table")
 
 //handle insertion of data
 function insert(){
@@ -55,7 +55,7 @@ function update(){
         headers: {"content-type": "application/json"},
         body: JSON.stringify(weather_data)
     }).then((response) => {
-        if (response.status == 201) {
+        if (response.status == 200) {
             alert("The weather data of " + province + " on " + date + " wae UPDATED successfully!")
         }
         else if (response.status == 404)
@@ -97,7 +97,7 @@ function deleted(){
             if(response.status == 200){
                 response.json().then((data) => {
                     for(let i = 0; i < data.length; i++){
-                        let datee = data[i].id[5] + data[i].id[6] + '/' + data[i].id[8] + data[i].id[9] + '/' + data[i].id[0] + data[i].id[1] + data[i].id[2] + data[i].id[3]
+                        let datee = extractDate(data, i)
                         let dated = date[5] + date[6] + '/' + date[8] + date[9] + '/' + date[0] + date[1] + date[2] + date[3]
 
                         console.log(dated + " " + datee);
@@ -122,9 +122,7 @@ function deleted(){
             if(response.status == 200){
                 response.json().then((data) => {
                     for(let i = 0; i < data.length; i++){
-                        let province_name = ''
-                        for( let j = 10; j < data[i].id.length; j++)
-                            province_name += data[i].id[j]
+                        let province_name = extractProvince(data, i)
 
                         if (province == province_name) {
                             fetch('http://localhost:3000/Cambodia/' + data[i].id, {
@@ -145,7 +143,7 @@ function deleted(){
         fetch('http://localhost:3000/Cambodia/' + id, {
             method: "DELETE"
         }).then((response) => {
-            if(response.status == 200 || response.status == 304){
+            if(response.status == 200){
                 alert("The weather data of " + province + " on " + date + " was DELETED! successfully!")
             } else if (response.status == 404){
                 alert("There weather data of " + province + " on " + date + " does not EXIST!")
@@ -160,34 +158,18 @@ function find(){
     let province = document.getElementById("province")
     let id = date.value + province.value
 
-    let table = document.getElementById("records-table")
+    
     
     //find all data
     if (id == "none"){
         fetch('http://localhost:3000/Cambodia').then((response) => {
             if(response.status == 200){
-                response.json().then((data) => {
-                    for(let i = 0; i < data.length && i < table.children[0].childElementCount; i++){
-                        let datee = data[i].id[5] + data[i].id[6] + '/' + data[i].id[8] + data[i].id[9] + '/' + data[i].id[0] + data[i].id[1] + data[i].id[2] + data[i].id[3]
-                        let province_name = ''
-                        for( let j = 10; j < data[i].id.length; j++)
-                            province_name += data[i].id[j]
-
-                        //Referenc to all available table row
-                        let t_date = table.children[0].children[i+1].children[0]
-                        let t_province = table.children[0].children[i+1].children[1]
-                        let t_high = table.children[0].children[i+1].children[2]
-                        let t_avg = table.children[0].children[i+1].children[3]
-                        let t_low = table.children[0].children[i+1].children[4]
-                        let t_cond = table.children[0].children[i+1].children[5]
-
-                        //display the data in the table
-                        t_date.innerHTML = datee
-                        t_province.innerHTML = province_name
-                        t_high.innerHTML = data[i].highTemp + "°C"
-                        t_avg.innerHTML = data[i].avgTemp + "°C"
-                        t_low.innerHTML = data[i].lowTemp + "°C"
-                        t_cond.innerHTML = data[i].cond
+                response.json().then((data) => { //I should consider using foreach(data) instead
+                    for(let i = 0; i < data.length && i < table.children[0].childElementCount - 1; i++){
+                        let datee = extractDate(data, i)
+                        let province_name = extractProvince(data, i)
+                        
+                        displayTable(data[i], datee, province_name, i)
                     }
                 })
             } else if (response.status == 404){
@@ -201,35 +183,18 @@ function find(){
         fetch('http://localhost:3000/Cambodia').then((response) => {
             if(response.status == 200){
                 response.json().then((data) => {
-                    let k = 1
-                    for(let i = 0; i < data.length && k < table.children[0].childElementCount; i++){
-                        let datee = data[i].id[5] + data[i].id[6] + '/' + data[i].id[8] + data[i].id[9] + '/' + data[i].id[0] + data[i].id[1] + data[i].id[2] + data[i].id[3]
+                    let k = 0
+                    for(let i = 0; i < data.length && k < table.children[0].childElementCount - 1; i++){
+                        let datee = extractDate(data, i);
                         let dated = date.value[5] + date.value[6] + '/' + date.value[8] + date.value[9] + '/' + date.value[0] + date.value[1] + date.value[2] + date.value[3]
-                        let province_name = ''
-                        for( let j = 10; j < data[i].id.length; j++)
-                            province_name += data[i].id[j]
+                        let province_name = extractProvince(data, i)
 
                         if (dated == datee) {
-                        //Referenc to all available table row
-                            let t_date = table.children[0].children[k].children[0]
-                            let t_province = table.children[0].children[k].children[1]
-                            let t_high = table.children[0].children[k].children[2]
-                            let t_avg = table.children[0].children[k].children[3]
-                            let t_low = table.children[0].children[k].children[4]
-                            let t_cond = table.children[0].children[k].children[5]
-
-                            //display the data in the table
-                            t_date.innerHTML = datee
-                            t_province.innerHTML = province_name
-                            t_high.innerHTML = data[i].highTemp + "°C"
-                            t_avg.innerHTML = data[i].avgTemp + "°C"
-                            t_low.innerHTML = data[i].lowTemp + "°C"
-                            t_cond.innerHTML = data[i].cond
-
+                            displayTable(data[i], datee, province_name, k)
                             k++;
                         }
                     }
-                    if(k == 1)
+                    if(k == 0)
                         alert("No data was FOUND!")
                 })
             } else if (response.status == 404){
@@ -244,34 +209,17 @@ function find(){
         fetch('http://localhost:3000/Cambodia').then((response) => {
             if(response.status == 200){
                 response.json().then((data) => {
-                    let k = 1
-                    for(let i = 0; i < data.length && k < table.children[0].childElementCount; i++){
-                        let datee = data[i].id[5] + data[i].id[6] + '/' + data[i].id[8] + data[i].id[9] + '/' + data[i].id[0] + data[i].id[1] + data[i].id[2] + data[i].id[3]
-                        let province_name = ''
-                        for( let j = 10; j < data[i].id.length; j++)
-                            province_name += data[i].id[j]
+                    let k = 0
+                    for(let i = 0; i < data.length && k < table.children[0].childElementCount - 1; i++){
+                        let datee = extractDate(data, i)
+                        let province_name = extractProvince(data, i)
                         
                         if (province.value == province_name) {
-                        //Referenc to all available table row
-                            let t_date = table.children[0].children[k].children[0]
-                            let t_province = table.children[0].children[k].children[1]
-                            let t_high = table.children[0].children[k].children[2]
-                            let t_avg = table.children[0].children[k].children[3]
-                            let t_low = table.children[0].children[k].children[4]
-                            let t_cond = table.children[0].children[k].children[5]
-
-                            //display the data in the table
-                            t_date.innerHTML = datee
-                            t_province.innerHTML = province_name
-                            t_high.innerHTML = data[i].highTemp + "°C"
-                            t_avg.innerHTML = data[i].avgTemp + "°C"
-                            t_low.innerHTML = data[i].lowTemp + "°C"
-                            t_cond.innerHTML = data[i].cond
-
+                            displayTable(data[i], datee, province_name, k)
                             k++;
                         }
                     }
-                    if(k == 1)
+                    if(k == 0)
                         alert("No data was FOUND!")
                 })
             } else if (response.status == 404){
@@ -287,27 +235,53 @@ function find(){
             if(response.status == 200){
                 response.json().then((data) => {
                     let datee = data.id[5] + data.id[6] + '/' + data.id[8] + data.id[9] + '/' + data.id[0] + data.id[1] + data.id[2] + data.id[3]
-                    let province = ''
+                    let province_name = ''
                     for( let i = 10; i < data.id.length; i++)
-                        province += data.id[i]
+                        province_name += data.id[i]
 
-                    let t_date = table.children[0].children[1].children[0]
-                    let t_province = table.children[0].children[1].children[1]
-                    let t_high = table.children[0].children[1].children[2]
-                    let t_avg = table.children[0].children[1].children[3]
-                    let t_low = table.children[0].children[1].children[4]
-                    let t_cond = table.children[0].children[1].children[5]
-                    
-                    t_date.innerHTML = datee
-                    t_province.innerHTML = province
-                    t_high.innerHTML = data.highTemp + "°C"
-                    t_avg.innerHTML = data.avgTemp + "°C"
-                    t_low.innerHTML = data.lowTemp + "°C"
-                    t_cond.innerHTML = data.cond
+                    displayTable(data, datee, province_name, 0)
                 })
             } else if (response.status == 404){
                 alert("The weather data of " + province.value + " on " + date.value + " does not EXIST!")
             }
         })
     }
+}
+
+
+
+
+
+//extract date from id
+function extractDate(data, i){
+    let datee = data[i].id[5] + data[i].id[6] + '/' + data[i].id[8] + data[i].id[9] + '/' + data[i].id[0] + data[i].id[1] + data[i].id[2] + data[i].id[3]
+
+    return datee;
+}
+
+//extract province from id
+function extractProvince(data, i){
+    let province_name = ""
+    for( let j = 10; j < data[i].id.length; j++)
+        province_name += data[i].id[j]
+    return province_name
+}
+
+//display data to the table
+function displayTable(data, datee, province_name, k){
+    //Referenc to all available table row
+    let t_date = table.children[0].children[k+1].children[0]
+    let t_province = table.children[0].children[k+1].children[1]
+    let t_high = table.children[0].children[k+1].children[2]
+    let t_avg = table.children[0].children[k+1].children[3]
+    let t_low = table.children[0].children[k+1].children[4]
+    let t_cond = table.children[0].children[k+1].children[5]
+
+    //display the data in the table
+    t_date.innerHTML = datee
+    t_province.innerHTML = province_name
+    t_high.innerHTML = data.highTemp + "°C"
+    t_avg.innerHTML = data.avgTemp + "°C"
+    t_low.innerHTML = data.lowTemp + "°C"
+    t_cond.innerHTML = data.cond
 }
