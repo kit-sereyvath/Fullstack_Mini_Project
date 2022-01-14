@@ -60,6 +60,8 @@ function update(){
         }
         else if (response.status == 404)
             alert("There is no weather data of " + province + " on " + date + "!\n" + "Consider INSERT the data instead.")
+        else if (response.status == 500)
+            alert("There is error in the server. Please try again later!")
     })
 }
 
@@ -111,6 +113,8 @@ function deleted(){
                 })
             } else if (response.status == 404){
                 alert("No data was FOUND!")
+            } else if (response.status == 500){
+                alert("There is error in the server. Please try again later!")
             }
         })
     }
@@ -134,6 +138,8 @@ function deleted(){
                 })
             } else if (response.status == 404){
                 alert("No data was FOUND!")
+            } else if (response.status == 500){
+                alert("There is error in the server. Please try again later!")
             }
         })
     }
@@ -147,6 +153,8 @@ function deleted(){
                 alert("The weather data of " + province + " on " + date + " was DELETED! successfully!")
             } else if (response.status == 404){
                 alert("There weather data of " + province + " on " + date + " does not EXIST!")
+            } else if (response.status == 500){
+                alert("There is error in the server. Please try again later!")
             }
         })
     }
@@ -174,6 +182,8 @@ function find(){
                 })
             } else if (response.status == 404){
                 alert("No data was FOUND!")
+            } else if (response.status == 500){
+                alert("There is error in the server. Please try again later!")
             }
         })
     }
@@ -199,6 +209,8 @@ function find(){
                 })
             } else if (response.status == 404){
                 alert("No data was FOUND!")
+            } else if (response.status == 500){
+                alert("There is error in the server. Please try again later!")
             }
         })
     }
@@ -224,6 +236,8 @@ function find(){
                 })
             } else if (response.status == 404){
                 alert("No data was FOUND!")
+            } else if (response.status == 500){
+                alert("There is error in the server. Please try again later!")
             }
         })
     }
@@ -243,6 +257,8 @@ function find(){
                 })
             } else if (response.status == 404){
                 alert("The weather data of " + province.value + " on " + date.value + " does not EXIST!")
+            } else if (response.status == 500){
+                alert("There is error in the server. Please try again later!")
             }
         })
     }
