@@ -167,41 +167,6 @@
       "highTemp": 34,
       "lowTemp": 20,
       "cond": "sunny"
-    },
-    {
-      "id": "2022-01-13Banteay Meanchey",
-      "avgTemp": "",
-      "highTemp": "",
-      "lowTemp": "",
-      "cond": "none"
-    },
-    {
-      "id": "2022-01-13Kampot",
-      "avgTemp": "",
-      "highTemp": "",
-      "lowTemp": "",
-      "cond": "none"
-    },
-    {
-      "id": "2022-01-07Battambang",
-      "avgTemp": "",
-      "highTemp": "",
-      "lowTemp": "",
-      "cond": "none"
-    },
-    {
-      "id": "2022-01-15Battambang",
-      "avgTemp": "",
-      "highTemp": "",
-      "lowTemp": "",
-      "cond": "none"
-    },
-    {
-      "id": "2022-01-16Battambang",
-      "avgTemp": "",
-      "highTemp": "",
-      "lowTemp": "",
-      "cond": "none"
     }
   ]
 }

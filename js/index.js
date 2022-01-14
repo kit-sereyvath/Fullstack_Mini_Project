@@ -87,6 +87,8 @@ function deleted(){
                     })
                 } else if (response.status == 404){
                     alert("Threre is no data to DELETE!")
+                } else if (response.status == 500){
+                    alert("There is error in the server. Please try again later!")
                 }
             })
         }
@@ -99,8 +101,8 @@ function deleted(){
             if(response.status == 200){
                 response.json().then((data) => {
                     for(let i = 0; i < data.length; i++){
-                        let datee = extractDate(data, i)
-                        let dated = date[5] + date[6] + '/' + date[8] + date[9] + '/' + date[0] + date[1] + date[2] + date[3]
+                        let datee = extractDate(data[i].id)
+                        let dated = extractDate(id)
 
                         console.log(dated + " " + datee);
                         if (dated == datee) {
@@ -126,7 +128,7 @@ function deleted(){
             if(response.status == 200){
                 response.json().then((data) => {
                     for(let i = 0; i < data.length; i++){
-                        let province_name = extractProvince(data, i)
+                        let province_name = extractProvince(data[i].id)
 
                         if (province == province_name) {
                             fetch('http://localhost:3000/Cambodia/' + data[i].id, {
@@ -173,11 +175,16 @@ function find(){
         fetch('http://localhost:3000/Cambodia').then((response) => {
             if(response.status == 200){
                 response.json().then((data) => { //I should consider using foreach(data) instead
+                    let k = 0
                     for(let i = 0; i < data.length && i < table.children[0].childElementCount - 1; i++){
-                        let datee = extractDate(data, i)
-                        let province_name = extractProvince(data, i)
+                        let datee = extractDate(data[i].id)
+                        let province_name = extractProvince(data[i].id)
                         
                         displayTable(data[i], datee, province_name, i)
+                        k++
+                    }
+                    if (k == 0){
+                        alert("No data was FOUND!")
                     }
                 })
             } else if (response.status == 404){
@@ -195,9 +202,9 @@ function find(){
                 response.json().then((data) => {
                     let k = 0
                     for(let i = 0; i < data.length && k < table.children[0].childElementCount - 1; i++){
-                        let datee = extractDate(data, i);
-                        let dated = date.value[5] + date.value[6] + '/' + date.value[8] + date.value[9] + '/' + date.value[0] + date.value[1] + date.value[2] + date.value[3]
-                        let province_name = extractProvince(data, i)
+                        let datee = extractDate(data[i].id)
+                        let dated = extractDate(id)
+                        let province_name = extractProvince(data[i].id)
 
                         if (dated == datee) {
                             displayTable(data[i], datee, province_name, k)
@@ -223,8 +230,8 @@ function find(){
                 response.json().then((data) => {
                     let k = 0
                     for(let i = 0; i < data.length && k < table.children[0].childElementCount - 1; i++){
-                        let datee = extractDate(data, i)
-                        let province_name = extractProvince(data, i)
+                        let datee = extractDate(data[i].id)
+                        let province_name = extractProvince(data[i].id)
                         
                         if (province.value == province_name) {
                             displayTable(data[i], datee, province_name, k)
@@ -248,10 +255,8 @@ function find(){
         fetch('http://localhost:3000/Cambodia/' + id).then((response) => {
             if(response.status == 200){
                 response.json().then((data) => {
-                    let datee = data.id[5] + data.id[6] + '/' + data.id[8] + data.id[9] + '/' + data.id[0] + data.id[1] + data.id[2] + data.id[3]
-                    let province_name = ''
-                    for( let i = 10; i < data.id.length; i++)
-                        province_name += data.id[i]
+                    let datee = extractDate(data.id)
+                    let province_name = extractProvince(data)
 
                     displayTable(data, datee, province_name, 0)
                 })
@@ -269,17 +274,17 @@ function find(){
 
 
 //extract date from id
-function extractDate(data, i){
-    let datee = data[i].id[5] + data[i].id[6] + '/' + data[i].id[8] + data[i].id[9] + '/' + data[i].id[0] + data[i].id[1] + data[i].id[2] + data[i].id[3]
+function extractDate(data){
+    let datee = data[5] + data[6] + '/' + data[8] + data[9] + '/' + data[0] + data[1] + data[2] + data[3]
 
     return datee;
 }
 
 //extract province from id
-function extractProvince(data, i){
+function extractProvince(data){
     let province_name = ""
-    for( let j = 10; j < data[i].id.length; j++)
-        province_name += data[i].id[j]
+    for( let j = 10; j < data.length; j++)
+        province_name += data[j]
     return province_name
 }
 
