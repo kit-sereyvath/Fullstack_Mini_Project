@@ -28,7 +28,7 @@
 /* Both Modify Table and Records Table container */
 .database {
     display: grid;
-    grid-template-areas: 'modify table table';
+    grid-template-areas: 'modify table table table';
 }
 
 /* Modify Table styling Started*/
@@ -127,6 +127,25 @@
     grid-area: table;
 }
 
+.table .container {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.show-favor {
+    width: 100px;
+    height: 30px;
+    color: white;
+    background-color: rgb(233, 4, 4);
+    border: none;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.show-favor:hover {
+    background-color: rgb(200, 0, 0);
+}
+
     /* Reduce space between table cells and fit table div*/
 #records-table {
     border-collapse: collapse;
@@ -159,3 +178,16 @@
     border-top-right-radius: 7px;
 }
 /* Table Section Ended */
+
+/* Favorite Started */
+
+.fa-heart {
+    color: red;
+}
+
+.fa-heart-o {
+    color: black;
+}
+.favorite {
+    background-color: white;
+}

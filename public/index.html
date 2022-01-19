@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -107,6 +108,11 @@
 <!-- Records Table Started -->
 
         <div class="table">
+
+          <div class="container">
+            <button class="show-favor">Favorite</button>
+          </div>
+
             <table id="records-table">
                 <tr>
                   <th>Date (d/m/y)</th>
@@ -123,6 +129,7 @@
                   <td></td>
                   <td></td>
                   <td></td>
+                  <td class="favorite"><i class="fa fa-heart" onclick="favorFunction(this)"></i></td>
                 </tr>
                 <tr>
                   <td></td>

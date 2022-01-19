@@ -306,3 +306,9 @@ function displayTable(data, datee, province_name, k){
     t_low.innerHTML = data.lowTemp + "°C"
     t_cond.innerHTML = data.cond
 }
+
+function favorFunction(x) {
+    x.classList.toggle("fa-heart-o");
+}
+
+favorFunction(document.getElementsByTagName("i")[0])
