@@ -1,4 +1,26 @@
-let table = document.getElementById("records-table")
+let table = document.getElementById("table")
+let table_sample = document.getElementById("sample")
+let all_data;
+
+//fill the table with all data when the page is open
+fetch('http://localhost:3000/Cambodia').then((response) => {
+    if(response.status == 200){
+        table.style.display = "block"
+        prepareTable()
+        all_data = response.json()
+        all_data.then((data) => { //I should consider using foreach(data) instead
+            let k = 0
+            for(let i = data.length - 1; i >= 0; i--){
+                let datee = extractDate(data[i].id)
+                let province_name = extractProvince(data[i].id)
+                
+                displayTable(data[i], datee, province_name, i)
+                k++
+            }
+        })
+    }
+})
+
 
 //handle insertion of data
 function insert(){
@@ -175,8 +197,10 @@ function find(){
         fetch('http://localhost:3000/Cambodia').then((response) => {
             if(response.status == 200){
                 response.json().then((data) => { //I should consider using foreach(data) instead
+                    table.style.display = "block"
+                    prepareTable()
                     let k = 0
-                    for(let i = 0; i < data.length && i < table.children[0].childElementCount - 1; i++){
+                    for(let i = 0; i < data.length; i++){
                         let datee = extractDate(data[i].id)
                         let province_name = extractProvince(data[i].id)
                         
@@ -200,8 +224,10 @@ function find(){
         fetch('http://localhost:3000/Cambodia').then((response) => {
             if(response.status == 200){
                 response.json().then((data) => {
+                    table.style.display = "block"
+                    prepareTable()
                     let k = 0
-                    for(let i = 0; i < data.length && k < table.children[0].childElementCount - 1; i++){
+                    for(let i = 0; i < data.length; i++){
                         let datee = extractDate(data[i].id)
                         let dated = extractDate(id)
                         let province_name = extractProvince(data[i].id)
@@ -228,8 +254,10 @@ function find(){
         fetch('http://localhost:3000/Cambodia').then((response) => {
             if(response.status == 200){
                 response.json().then((data) => {
+                    table.style.display = "block"
+                    prepareTable()
                     let k = 0
-                    for(let i = 0; i < data.length && k < table.children[0].childElementCount - 1; i++){
+                    for(let i = 0; i < data.length; i++){
                         let datee = extractDate(data[i].id)
                         let province_name = extractProvince(data[i].id)
                         
@@ -254,9 +282,11 @@ function find(){
     else if (province.value != "none" && date.value != "") {
         fetch('http://localhost:3000/Cambodia/' + id).then((response) => {
             if(response.status == 200){
+                table.style.display = "block"
+                prepareTable()
                 response.json().then((data) => {
                     let datee = extractDate(data.id)
-                    let province_name = extractProvince(data)
+                    let province_name = extractProvince(data.id)
 
                     displayTable(data, datee, province_name, 0)
                 })
@@ -268,6 +298,29 @@ function find(){
         })
     }
 }
+
+//handle displaying favourite data
+function favcol(){
+    table.style.display = "block"
+    prepareTable()
+    all_data.then((data) => {
+        data.forEach((element) => {
+            if(element.isfavor){
+                displayTable(element, extractDate(element.id), extractProvince(element.id), 1)
+            }
+        })
+    })
+}
+
+//handle row clicking and display detail
+function row_detail(x){
+      swal(x.children[1].innerHTML, `Date: ${x.children[0].innerHTML}\n
+      Highest Temperature: ${x.children[2].innerHTML}\n
+      Average Temperature: ${x.children[3].innerHTML}\n
+      Lowest Temperature: ${x.children[4].innerHTML}\n
+      Sky Condition: ${x.children[5].innerHTML}`); 
+}
+
 
 
 
@@ -288,27 +341,95 @@ function extractProvince(data){
     return province_name
 }
 
+//function prepareTable(tab)
+function prepareTable(){
+    try{
+        table.children[1].remove()
+    } catch(e){}
+
+    let tb = document.createElement("table")
+    tb.setAttribute("id", "records-table")
+
+    let tr = document.createElement("tr")
+    let date = document.createElement("th")
+    date.innerHTML = "Date (d/m/y)"
+    tr.appendChild(date)
+    let city = document.createElement("th")
+    city.innerHTML = "City/Province"
+    tr.appendChild(city)
+    let high = document.createElement("th")
+    high.innerHTML = "Highest Temp"
+    tr.appendChild(high)
+    let avg = document.createElement("th")
+    avg.innerHTML = "Average Temp"
+    tr.appendChild(avg)
+    let low = document.createElement("th")
+    low.innerHTML = "Lowest Temp"
+    tr.appendChild(low)
+    let cond = document.createElement("th")
+    cond.innerHTML = "Condition"
+    tr.appendChild(cond)
+
+    tb.appendChild(tr)
+    table.appendChild(tb)
+}
+
 //display data to the table
 function displayTable(data, datee, province_name, k){
-    //Referenc to all available table row
-    let t_date = table.children[0].children[k+1].children[0]
-    let t_province = table.children[0].children[k+1].children[1]
-    let t_high = table.children[0].children[k+1].children[2]
-    let t_avg = table.children[0].children[k+1].children[3]
-    let t_low = table.children[0].children[k+1].children[4]
-    let t_cond = table.children[0].children[k+1].children[5]
-
-    //display the data in the table
-    t_date.innerHTML = datee
-    t_province.innerHTML = province_name
-    t_high.innerHTML = data.highTemp + "°C"
-    t_avg.innerHTML = data.avgTemp + "°C"
-    t_low.innerHTML = data.lowTemp + "°C"
-    t_cond.innerHTML = data.cond
+    let tr = document.createElement("tr")
+    tr.setAttribute("id", data.id)
+    tr.setAttribute("onclick", "row_detail(this)")
+    let date = document.createElement("td")
+    date.innerHTML = datee
+    tr.appendChild(date)
+    let city = document.createElement("td")
+    city.innerHTML = province_name
+    tr.appendChild(city)
+    let high = document.createElement("td")
+    high.innerHTML = data.highTemp + "°C"
+    tr.appendChild(high)
+    let avg = document.createElement("td")
+    avg.innerHTML = data.avgTemp + "°C"
+    tr.appendChild(avg)
+    let low = document.createElement("td")
+    low.innerHTML = data.lowTemp + "°C"
+    tr.appendChild(low)
+    let cond = document.createElement("td")
+    cond.innerHTML = data.cond
+    tr.appendChild(cond)
+    let fav = document.createElement("td")
+    let icon = document.createElement("i")
+    icon.setAttribute("class", "fa fa-heart")
+    icon.setAttribute("onclick", "favorFunction(this)")
+    icon.setAttribute("icheck", "f")
+    icon.setAttribute("idi", data.id)
+    if(!data.isfavor){
+        favorFunction(icon)
+        icon.setAttribute("icheck", "t")
+    } else {
+        icon.setAttribute("icheck", "t")
+    }
+    fav.appendChild(icon)
+    tr.appendChild(fav)
+    table.children[1].appendChild(tr)
 }
 
 function favorFunction(x) {
     x.classList.toggle("fa-heart-o");
+    let id = x.getAttribute("idi")
+    
+    if(x.getAttribute("icheck") === "t"){
+        all_data.then((data) => {
+            data.forEach(element => {
+                if(element.id === id){
+                    element.isfavor = !element.isfavor
+                    fetch('http://localhost:3000/Cambodia/' + id, {
+                        method: "PUT",
+                        headers: {"content-type": "application/json"},
+                        body: JSON.stringify(element)
+                    })
+                }
+            })
+        })
+    }
 }
-
-favorFunction(document.getElementsByTagName("i")[0])

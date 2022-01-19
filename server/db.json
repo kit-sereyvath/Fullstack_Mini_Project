@@ -5,168 +5,192 @@
       "avgTemp": 31,
       "highTemp": 32,
       "lowTemp": 22,
-      "cond": "sunny"
+      "cond": "sunny",
+      "isfavor": false
     },
     {
       "id": "2022-01-08Kampong Cham",
       "avgTemp": 28,
       "highTemp": 33,
       "lowTemp": 20,
-      "cond": "sunny"
+      "cond": "sunny",
+      "isfavor": false
     },
     {
       "id": "2022-01-08Kampong Chhnang",
       "avgTemp": 24,
       "highTemp": 32,
       "lowTemp": 21,
-      "cond": "sunny"
+      "cond": "sunny",
+      "isfavor": false
     },
     {
       "id": "2022-01-08Kampot",
       "avgTemp": 24,
       "highTemp": 32,
       "lowTemp": 23,
-      "cond": "cloudy"
+      "cond": "cloudy",
+      "isfavor": false
     },
     {
       "id": "2022-01-08Kampong Speu",
       "avgTemp": 28,
       "highTemp": 31,
       "lowTemp": 21,
-      "cond": "sunny"
+      "cond": "sunny",
+      "isfavor": false
     },
     {
       "id": "2022-01-08Banteay Meanchey",
       "avgTemp": 24,
       "highTemp": 32,
       "lowTemp": 21,
-      "cond": "sunny"
+      "cond": "sunny",
+      "isfavor": true
     },
     {
       "id": "2022-01-08Battambang",
       "avgTemp": 23,
       "highTemp": 32,
       "lowTemp": 21,
-      "cond": "sunny"
+      "cond": "sunny",
+      "isfavor": false
     },
     {
       "id": "2022-01-08Kandal",
       "avgTemp": 29,
       "highTemp": 32,
       "lowTemp": 21,
-      "cond": "cloudy"
+      "cond": "cloudy",
+      "isfavor": false
     },
     {
       "id": "2022-01-08Koh Kong",
       "avgTemp": 20,
       "highTemp": 33,
       "lowTemp": 19,
-      "cond": "sunny"
+      "cond": "sunny",
+      "isfavor": false
     },
     {
       "id": "2022-01-08Kep",
       "avgTemp": 24,
       "highTemp": 31,
       "lowTemp": 24,
-      "cond": "sunny"
+      "cond": "sunny",
+      "isfavor": false
     },
     {
       "id": "2022-01-08Kratié",
       "avgTemp": 24,
       "highTemp": 34,
       "lowTemp": 19,
-      "cond": "sunny"
+      "cond": "sunny",
+      "isfavor": false
     },
     {
       "id": "2022-01-08Mondulkiri",
       "avgTemp": 19,
       "highTemp": 29,
       "lowTemp": 17,
-      "cond": "sunny"
+      "cond": "sunny",
+      "isfavor": false
     },
     {
       "id": "2022-01-08Oddar Meanchey",
       "avgTemp": 22,
       "highTemp": 34,
       "lowTemp": 20,
-      "cond": "sunny"
+      "cond": "sunny",
+      "isfavor": false
     },
     {
       "id": "2022-01-08Pailin",
       "avgTemp": 22,
       "highTemp": 31,
       "lowTemp": 20,
-      "cond": "sunny"
+      "cond": "sunny",
+      "isfavor": false
     },
     {
       "id": "2022-01-08Preah Sihanouk Ville",
       "avgTemp": 23,
       "highTemp": 31,
       "lowTemp": 22,
-      "cond": "cloudy"
+      "cond": "cloudy",
+      "isfavor": false
     },
     {
       "id": "2022-01-08Preah Vihear",
       "avgTemp": 22,
       "highTemp": 34,
       "lowTemp": 19,
-      "cond": "sunny"
+      "cond": "sunny",
+      "isfavor": false
     },
     {
       "id": "2022-01-08Pursat",
       "avgTemp": 22,
       "highTemp": 31,
       "lowTemp": 21,
-      "cond": "sunny"
+      "cond": "sunny",
+      "isfavor": false
     },
     {
       "id": "2022-01-08Prey Veng",
       "avgTemp": 29,
       "highTemp": 33,
       "lowTemp": 22,
-      "cond": "sunny"
+      "cond": "sunny",
+      "isfavor": false
     },
     {
       "id": "2022-01-08Ratanak Kiri",
       "avgTemp": 21,
       "highTemp": 33,
       "lowTemp": 16,
-      "cond": "sunny"
+      "cond": "sunny",
+      "isfavor": true
     },
     {
       "id": "2022-01-08Siem Reap",
       "avgTemp": 25,
       "highTemp": 31,
       "lowTemp": 21,
-      "cond": "sunny"
+      "cond": "sunny",
+      "isfavor": true
     },
     {
       "id": "2022-01-08Stung Treng",
       "avgTemp": 22,
       "highTemp": 33,
       "lowTemp": 18,
-      "cond": "sunny"
+      "cond": "sunny",
+      "isfavor": true
     },
     {
       "id": "2022-01-08Svay Rieng",
       "avgTemp": 25,
       "highTemp": 33,
       "lowTemp": 23,
-      "cond": "sunny"
+      "cond": "sunny",
+      "isfavor": false
     },
     {
       "id": "2022-01-08Takéo",
       "avgTemp": 25,
       "highTemp": 33,
       "lowTemp": 23,
-      "cond": "sunny"
+      "cond": "sunny",
+      "isfavor": true
     },
     {
       "id": "2022-01-08Tbong Khmum",
       "avgTemp": 23,
       "highTemp": 34,
       "lowTemp": 20,
-      "cond": "sunny"
+      "cond": "sunny",
+      "isfavor": true
     }
   ]
 }
