@@ -17,6 +17,9 @@ fetch('http://localhost:3000/Cambodia').then((response) => {
                 displayTable(data[i], datee, province_name, i)
                 k++
             }
+            if(k == 0){
+                table.style.display = "none"
+            }
         })
     }
 })
@@ -200,7 +203,7 @@ function find(){
                     table.style.display = "block"
                     prepareTable()
                     let k = 0
-                    for(let i = 0; i < data.length; i++){
+                    for(let i = data.length - 1; i >= 0; i--){
                         let datee = extractDate(data[i].id)
                         let province_name = extractProvince(data[i].id)
                         
@@ -208,6 +211,7 @@ function find(){
                         k++
                     }
                     if (k == 0){
+                        table.style.display = "none"
                         alert("No data was FOUND!")
                     }
                 })
@@ -227,7 +231,7 @@ function find(){
                     table.style.display = "block"
                     prepareTable()
                     let k = 0
-                    for(let i = 0; i < data.length; i++){
+                    for(let i = data.length - 1; i >= 0; i--){
                         let datee = extractDate(data[i].id)
                         let dated = extractDate(id)
                         let province_name = extractProvince(data[i].id)
@@ -237,8 +241,10 @@ function find(){
                             k++;
                         }
                     }
-                    if(k == 0)
+                    if(k == 0){
+                        table.style.display = "none"
                         alert("No data was FOUND!")
+                    }
                 })
             } else if (response.status == 404){
                 alert("No data was FOUND!")
@@ -257,7 +263,7 @@ function find(){
                     table.style.display = "block"
                     prepareTable()
                     let k = 0
-                    for(let i = 0; i < data.length; i++){
+                    for(let i = data.length - 1; i >= 0; i--){
                         let datee = extractDate(data[i].id)
                         let province_name = extractProvince(data[i].id)
                         
@@ -266,8 +272,10 @@ function find(){
                             k++;
                         }
                     }
-                    if(k == 0)
+                    if(k == 0){
+                        table.style.display = "none"
                         alert("No data was FOUND!")
+                    }
                 })
             } else if (response.status == 404){
                 alert("No data was FOUND!")
